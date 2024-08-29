@@ -18,15 +18,25 @@ const sketch = () => {
 
     context.save();
     context.translate( x, y ); 
-
+    context.translate(w * -0.5, h * -0.5);
     context.strokeStyle = 'blue';
     // context.strokeRect( w * -0.5, h * -0.5, w, h); // + context.translate(x, y);
     // context.strokeRect( w * -0.5 + x, h * -0.5 + y , w, h);
 
     context.beginPath();
-    context.moveTo(w * - 0.5, h * -0.5); 
-    context.lineTo(w * 0.5, h * -0.5);
-    context.stroke()
+    context.moveTo(0,0);
+    context.lineTo(w, 0);
+    context.lineTo(w, h);
+    context.lineTo(0, h);
+    //=============>>> use without .tranlate(w * 0.5, h * 0.5)
+    // context.moveTo(w * - 0.5, h * -0.5); 
+    // context.lineTo(w * 0.5, h * -0.5);
+    // context.lineTo(w * 0.5, h * 0.5);
+    // context.lineTo(w * -0.5, h * 0.5);
+    // context.lineTo(w * -0.5, h * -0.5);
+    context.closePath();
+
+    context.stroke();
 
     context.restore();
      
