@@ -22,7 +22,7 @@ const sketch = ({context, width, height }) => {
     let w = random.range(200, 600);
     let h = random.range(40, 200);
 
-    const fill = `rgba(0,0,${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
+    const fill = `rgba(${random.range(0,255)},${random.range(0,255)},${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
     const stroke = 'black';
 
     rects.push({x, y, w, h, fill, stroke })
