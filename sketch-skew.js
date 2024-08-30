@@ -17,23 +17,31 @@ const sketch = ({context, width, height }) => {
   const degrees = 30;
 
   const rects = [];
+  
+  const rectColors = [
+    random.pick(risoColors),
+    random.pick(risoColors),
+    random.pick(risoColors),
+  ]
 
+  const bgColor = random.pick(rectColors).hex;
   for (let i = 0; i < num; i++){
     let x = random.range( 0, width);
     let y = random.range(0, height);
     let w = random.range(200, 600);
     let h = random.range(40, 200);
 
-    const fill = random.pick(risoColors).hex;
+    const fill = random.pick(rectColors).hex;
 
-   console.log(fill);//`rgba(${random.range(0,255)} ,${random.range(0,255)},${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
+    console.log(fill);//`rgba(${random.range(0,255)} ,${random.range(0,255)},${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
     
-   const stroke = random.pick(risoColors).hex;
-console.log('stroke: ',stroke);
-    rects.push({x, y, w, h, fill, stroke })
+   const stroke = random.pick(rectColors).hex;
+     console.log('stroke: ',stroke);
+     
+   rects.push({x, y, w, h, fill, stroke })
   }
   return ({ context, width, height }) => {
-    context.fillStyle = 'white';
+    context.fillStyle = bgColor;
     context.fillRect(0, 0, width, height);
 
   rects.forEach(rect => {
@@ -43,6 +51,8 @@ console.log('stroke: ',stroke);
     context.translate(x, y ); 
     context.strokeStyle = stroke;
     context.fillStyle = fill;
+    context.lineWidth= 10;
+
 
     
     drawSkewRect({context, w, h, degrees});
