@@ -4,7 +4,7 @@ const random = require('canvas-sketch-util/random');
 
 const settings = {
   dimensions: [ 1080, 1080 ],
-  // animate: true,
+  // animate: true, 
 };
 
 const sketch = ({context, width, height }) => {
@@ -22,21 +22,28 @@ const sketch = ({context, width, height }) => {
     let w = random.range(200, 600);
     let h = random.range(40, 200);
 
-    rects.push({x, y, w, h })
+    const fill = `rgba(0,0,${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
+    const stroke = 'black';
+
+    rects.push({x, y, w, h, fill, stroke })
   }
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
   rects.forEach(rect => {
-    const {x, y, w, h} = rect;
+    const {x, y, w, h, fill, stroke} = rect;
 
     context.save();
     context.translate(x, y ); 
-    context.strokeStyle = 'blue';  
+    context.strokeStyle = stroke;
+    context.fillStyle = fill;
+
     
     drawSkewRect({context, w, h, degrees});
     context.stroke( );
+    context.fill();
+  
 
     context.restore();
 
