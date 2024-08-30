@@ -22,7 +22,7 @@ const sketch = ({context, width, height }) => {
   const rectColors = [
     random.pick(risoColors),
     random.pick(risoColors),
-    random.pick(risoColors),
+    // random.pick(risoColors),
   ]
 
   const bgColor = random.pick(rectColors).hex;
