@@ -29,8 +29,10 @@ const sketch = ({context, width, height }) => {
     context.fillRect(0, 0, width, height);
 
   rects.forEach(rect => {
+    const {x, y, w, h} = rect;
+
     context.save();
-    context.translate( rect.x, rect.y ); 
+    context.translate(x, y ); 
     context.strokeStyle = 'blue';  
     
     drawSkewRect({context, w, h, degrees});
