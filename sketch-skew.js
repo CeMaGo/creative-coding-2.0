@@ -32,14 +32,15 @@ const sketch = ({context, width, height }) => {
     let h = random.range(40, 200);
 
     const fill = random.pick(risoColors).hex;
-
-    console.log(fill);//`rgba(${random.range(0,255)} ,${random.range(0,255)},${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
+     // console.log('fill: ',fill);//`rgba(${random.range(0,255)} ,${random.range(0,255)},${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
     
-   const stroke = random.pick(rectColors).hex;
-     console.log('stroke: ',stroke);
+    const stroke = random.pick(rectColors).hex;
+     //  console.log('stroke: ',stroke);
      
-   rects.push({x, y, w, h, fill, stroke })
-  }
+    rects.push({x, y, w, h, fill, stroke })
+    };
+
+
   return ({ context, width, height }) => {
     context.fillStyle = bgColor;
     context.fillRect(0, 0, width, height);
@@ -56,8 +57,15 @@ const sketch = ({context, width, height }) => {
 
     
     drawSkewRect({context, w, h, degrees});
-    context.stroke( );
+    
+    context.shadowColor = 'black';
+    context.shadowOffSetX = - 10;
+    context.shadowOffSetY = - 20;
     context.fill();
+
+    context.shadowColor = null;
+    context.stroke( );
+    
   
 
     context.restore();
