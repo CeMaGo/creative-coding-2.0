@@ -56,7 +56,8 @@ const sketch = ({context, width, height }) => {
     context.fillStyle = fill;
     context.lineWidth= 10;
 
-
+    context.globalCompositeOperation = 'overlay';
+  
     
     drawSkewRect({context, w, h, degrees});
     
@@ -70,10 +71,12 @@ const sketch = ({context, width, height }) => {
 
     context.shadowColor = null;
     context.stroke( );
+
+    context.globalCompositeOperation = 'source-over';
     
     context.lineWidth = 2;
     context.strokeStyle = 'black';
-    context.stroke()
+    context.stroke();
 
     context.restore();
 
