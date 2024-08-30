@@ -1,5 +1,6 @@
 const canvasSketch = require('canvas-sketch');
 const math = require('canvas-sketch-util/math');
+const random = require('canvas-sketch-util/random');
 
 const settings = {
   dimensions: [ 1080, 1080 ]
@@ -9,21 +10,27 @@ const sketch = () => {
   let x, y, w, h;
   let angle, rx, ry;
 
+  const num = 20;
+
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
-    let x = width * 0.5;
-    let y = height * 0.5;
-    let w = width * 0.6;
-    let h = height * 0.1;
+    for (let i = 0; i < num; i++){
 
-    context.save();
-    context.translate( x, y ); 
-    context.strokeStyle = 'blue';  
-    
-    drawSkewRect({context});
-    context.restore();
+      let x = random.range( 0, width);
+      let y = random.range(0, height);
+      let w = width * 0.6;
+      let h = height * 0.1;
+  
+      context.save();
+      context.translate( x, y ); 
+      context.strokeStyle = 'blue';  
+      
+      drawSkewRect({context});
+      context.stroke( )
+      context.restore();
+    }
     
   };
 };
