@@ -58,7 +58,7 @@ const sketch = ({context, width, height }) => {
     
     drawSkewRect({context, w, h, degrees});
     
-    context.shadowColor = 'black';
+    context.shadowColor = 'rgba(0,0,0,0.5)';
     context.shadowOffSetX = - 10;
     context.shadowOffSetY = - 20;
     context.fill();
