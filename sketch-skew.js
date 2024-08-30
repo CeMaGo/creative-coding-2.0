@@ -14,7 +14,7 @@ const sketch = ({context, width, height }) => {
   let x, y, w, h, fill, stroke, blend;
   let angle, rx, ry;
 
-  const num = 20;
+  const num = 40;
   const degrees = 30;
 
   const rects = [];
@@ -29,7 +29,7 @@ const sketch = ({context, width, height }) => {
   for (let i = 0; i < num; i++){
     let x = random.range( 0, width);
     let y = random.range(0, height);
-    let w = random.range(200, 600);
+    let w = random.range(600, width);
     let h = random.range(40, 200);
 
     fill = random.pick(risoColors).hex;
