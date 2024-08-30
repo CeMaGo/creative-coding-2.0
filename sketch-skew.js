@@ -11,7 +11,7 @@ const settings = {
 };
 
 const sketch = ({context, width, height }) => {
-  let x, y, w, h;
+  let x, y, w, h, fill, stroke, blend;
   let angle, rx, ry;
 
   const num = 20;
@@ -32,13 +32,13 @@ const sketch = ({context, width, height }) => {
     let w = random.range(200, 600);
     let h = random.range(40, 200);
 
-    const fill = random.pick(risoColors).hex;
+    fill = random.pick(risoColors).hex;
      // console.log('fill: ',fill);//`rgba(${random.range(0,255)} ,${random.range(0,255)},${random.range(0,255)}, 0.7)` //'rgba(0,0,255,1) ','rgb(0,0,255), 'blue', '#0000FF';
-    
-    const stroke = random.pick(rectColors).hex;
+    stroke = random.pick(rectColors).hex;
      //  console.log('stroke: ',stroke);
+    blend = (random.value()> 0.5) ? 'overlay' : 'source-over';
      
-    rects.push({x, y, w, h, fill, stroke })
+    rects.push({x, y, w, h, fill, stroke, blend })
     };
 
 
@@ -47,7 +47,7 @@ const sketch = ({context, width, height }) => {
     context.fillRect(0, 0, width, height);
 
   rects.forEach(rect => {
-    const {x, y, w, h, fill, stroke} = rect;
+    const {x, y, w, h, fill, stroke, blend} = rect;
     let shadowColor;
 
     context.save();
@@ -56,7 +56,7 @@ const sketch = ({context, width, height }) => {
     context.fillStyle = fill;
     context.lineWidth= 10;
 
-    context.globalCompositeOperation = 'overlay';
+    context.globalCompositeOperation = blend;
   
     
     drawSkewRect({context, w, h, degrees});
@@ -85,7 +85,7 @@ const sketch = ({context, width, height }) => {
   };
 };
 
-const drawSkewRect = ({ context, w = 600, h = 200, degrees = -45  }) => {
+const drawSkewRect = ({ context, w = 600, h = 200, degrees = -45 }) => {
   
      const angle = math.degToRad(degrees );
      const rx = Math.cos(angle)* w;
