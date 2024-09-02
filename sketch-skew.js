@@ -46,11 +46,30 @@ const sketch = ({context, width, height }) => {
     context.fillStyle = bgColor;
     context.fillRect(0, 0, width, height);
 
+
+  context.save();
+  context.translate(width * 0.5, height * 0.58);
+
+  context.beginPath();
+  context.moveTo(0 , -300);
+  context.lineTo(300,200);
+  context.lineTo(-300,200);
+  context.closePath();
+  
+  context.lineWidth = 10;
+  context.strokeStyle = 'black';
+  context.stroke(); 
+
+  context.clip();
+
+  // context.restore();
+
   rects.forEach(rect => {
     const {x, y, w, h, fill, stroke, blend} = rect;
     let shadowColor;
 
     context.save();
+    context.translate( width * - 0.5, height * - 0.5);
     context.translate(x, y ); 
     context.strokeStyle = stroke;
     context.fillStyle = fill;
@@ -80,8 +99,8 @@ const sketch = ({context, width, height }) => {
 
     context.restore();
 
-  })
-    
+  });
+
   };
 };
 
