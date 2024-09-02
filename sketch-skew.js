@@ -26,6 +26,15 @@ const sketch = ({context, width, height }) => {
   ]
 
   const bgColor = random.pick(rectColors).hex;
+  
+  const mask = {
+    radius : width * 0.4,
+    sides : 3,
+    x : width * 0.5,
+    y : height * 0.5
+  };
+
+
   for (let i = 0; i < num; i++){
     let x = random.range( 0, width);
     let y = random.range(0, height);
@@ -48,28 +57,24 @@ const sketch = ({context, width, height }) => {
 
 
   context.save();
-  context.translate(width * 0.5, height * 0.58);
+  context.translate(mask.x, mask.y);
 
-  context.beginPath();
-  context.moveTo(0 , -300);
-  context.lineTo(300,200);
-  context.lineTo(-300,200);
-  context.closePath();
-  
-  context.lineWidth = 10;
-  context.strokeStyle = 'black';
-  context.stroke(); 
-
+  drawPolygon({context, radius: mask.radius, sides: mask.sides})
+  // context.beginPath();
+  // context.moveTo(0 , -300);
+  // context.lineTo(300,200);
+  // context.lineTo(-300,200);
+  // context.closePath();
   context.clip();
 
-  // context.restore();
+  context.restore();
 
   rects.forEach(rect => {
     const {x, y, w, h, fill, stroke, blend} = rect;
     let shadowColor;
 
     context.save();
-    context.translate( width * - 0.5, height * - 0.5);
+    context.translate( -mask.x, -mask.y);
     context.translate(x, y ); 
     context.strokeStyle = stroke;
     context.fillStyle = fill;
@@ -99,6 +104,14 @@ const sketch = ({context, width, height }) => {
 
     context.restore();
 
+    context.save();
+    context.translate(mask.x, mask.y);
+    drawPolygon({context, radius: mask.radius, sides: mask.sides})
+    context.lineWidth = 10;
+    context.strokeStyle = 'black';
+    context.stroke();
+    context.restore();
+
   });
 
   };
@@ -122,5 +135,19 @@ const drawSkewRect = ({ context, w = 600, h = 200, degrees = -45 }) => {
       context.stroke();
       context.restore();
     };
+
+    const drawPolygon = ({context, radius = 100, sides = 3 }) => {
+      const slice = Math.PI * 2 / sides;
+
+      context.beginPath();
+      context.moveTo(0, -radius);
+       
+    for (let i = 0; i < sides; i++ ){
+         const theta = i * slice - Math.PI * 0.5;
+         context.lineTo(Math.cos(theta) * radius, Math.sin(theta)* radius);
+      }
+     context.closePath();
+
+    }
 
 canvasSketch(sketch, settings);
