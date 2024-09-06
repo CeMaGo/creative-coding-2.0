@@ -4,11 +4,14 @@ const random = require('canvas-sketch-util/random');
 const Color = require('canvas-sketch-util/color');
 const risoColors = require('riso-colors');
 
-const seed = Date.now; 
+const seed = random.getRandomSeed() 
+ //.getRandomSeed() if you like a result, log and save the number of the seed to recreate that exact image.
+//Date.now; 
 
 const settings = {
   dimensions: [ 1080, 1080 ],
-  // animate: true, 
+  animate: true, 
+  name: seed, 
 };
 
 
