@@ -99,10 +99,11 @@ const sketch = ({context, width, height }) => {
   // polygon outline:
     context.save();
     context.translate(mask.x, mask.y);
-    drawPolygon({context, radius: mask.radius, sides: mask.sides})
+    context.lineWidth = 20;
+
+    drawPolygon({context, radius: mask.radius -context.lineWidth, sides: mask.sides})
     
     context.globalCompositeOperation = 'color-burn'
-    context.lineWidth = 20;
     context.strokeStyle = rectColors[0].hex;
     context.stroke();
     context.restore();
