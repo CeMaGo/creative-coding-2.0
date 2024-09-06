@@ -99,7 +99,7 @@ const sketch = ({context, width, height }) => {
   // polygon outline:
     context.save();
     context.translate(mask.x, mask.y);
-    context.lineWidth = 20;
+    context.lineWidth = 20; 
 
     drawPolygon({context, radius: mask.radius -context.lineWidth, sides: mask.sides})
     
