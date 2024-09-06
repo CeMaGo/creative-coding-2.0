@@ -30,7 +30,7 @@ const sketch = ({context, width, height }) => {
           radius : width * 0.4,
           sides : 3,
           x : width * 0.5,
-          y : height * 0.5
+          y : height * 0.58
         };
 
 
@@ -49,7 +49,7 @@ const sketch = ({context, width, height }) => {
 
 
   return ({ context, width, height }) => {
-    context.fillStyle = bgColor;
+    context.fillStyle = bgColor; 
     context.fillRect(0, 0, width, height);
 
     context.save();
@@ -96,14 +96,15 @@ const sketch = ({context, width, height }) => {
   });
   context.restore();
 
+  // polygon outline:
     context.save();
     context.translate(mask.x, mask.y);
     drawPolygon({context, radius: mask.radius, sides: mask.sides})
     context.lineWidth = 10;
-    context.strokeStyle = 'black';
+    context.strokeStyle = random.pick(rectColors).hex
+    console.log(random.pick(rectColors).hex, 'object')
     context.stroke();
     context.restore();
-
 
   };
 };
