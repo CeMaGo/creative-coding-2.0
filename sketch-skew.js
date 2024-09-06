@@ -85,7 +85,7 @@ const sketch = ({context, width, height }) => {
     context.fill();
 
     context.shadowColor = null;
-    context.stroke( );
+    context.stroke( ); 
 
     context.globalCompositeOperation = 'source-over';
     
@@ -100,9 +100,10 @@ const sketch = ({context, width, height }) => {
     context.save();
     context.translate(mask.x, mask.y);
     drawPolygon({context, radius: mask.radius, sides: mask.sides})
-    context.lineWidth = 10;
-    context.strokeStyle = random.pick(rectColors).hex
-    console.log(random.pick(rectColors).hex, 'object')
+    
+    context.globalCompositeOperation = 'color-burn'
+    context.lineWidth = 20;
+    context.strokeStyle = rectColors[0].hex;
     context.stroke();
     context.restore();
 
