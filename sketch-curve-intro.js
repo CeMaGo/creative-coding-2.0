@@ -28,8 +28,14 @@ const sketch = ({ canvas }) => {
 
     context.beginPath();
     context.moveTo(points[0].x, points[0].y);
-    context.quadraticCurveTo(points[1].x, points[1].y, points[2].x, points[2].y);
-    context.quadraticCurveTo(points[3].x, points[3].y, points[4].x, points[4].y);
+
+    for (let i = 1; i < points.length; i += 2){
+
+      context.quadraticCurveTo(points[i + 0].x, points[i + 0].y, points[i + 1].x, points[i + 1].y);
+    }
+
+
+    // context.quadraticCurveTo(points[3].x, points[3].y, points[4].x, points[4].y);
     context.stroke();
     
     points.forEach(point => {
