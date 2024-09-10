@@ -65,6 +65,7 @@ const sketch = ({ canvas }) => {
       // context.fill();
 
       if( i == 0) context.moveTo(curr.x, curr.y);
+      else if(i== points.length -2) context.quadraticCurveTo(curr.x, curr.y, next.x, next.y);
       else context.quadraticCurveTo(curr.x, curr.y, mx, my);
     }
     
