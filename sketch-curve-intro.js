@@ -64,7 +64,7 @@ const sketch = ({ canvas }) => {
       // context.fillStyle = 'blue';
       // context.fill();
 
-      if( i == 0) context.moveTo(mx, my);
+      if( i == 0) context.moveTo(curr.x, curr.y);
       else context.quadraticCurveTo(curr.x, curr.y, mx, my);
     }
     
@@ -101,7 +101,6 @@ const onMouseMove = (e) => {
     }
   })
   console.log(x, y);
-
 };
 
  const onMouseUp = (e) => {
