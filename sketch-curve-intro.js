@@ -49,6 +49,8 @@ const sketch = ({ canvas }) => {
     // context.stroke();
 
     context.beginPath( )
+
+
     for (let i = 0; i < points.length -1; i++ ) {
       const curr = points[i + 0];
       const next = points[i + 1];
@@ -62,7 +64,8 @@ const sketch = ({ canvas }) => {
       // context.fillStyle = 'blue';
       // context.fill();
 
-      context.quadraticCurveTo(curr.x, curr.y, mx, my);
+      if( i == 0) context.moveTo(mx, my);
+      else context.quadraticCurveTo(curr.x, curr.y, mx, my);
     }
     
     context.lineWidth = 4;
