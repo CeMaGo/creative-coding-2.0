@@ -25,18 +25,28 @@ const sketch = ({ canvas }) => {
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
-
+    
+   context.strokeStyle = '#999';
     context.beginPath();
     context.moveTo(points[0].x, points[0].y);
 
-    for (let i = 1; i < points.length; i += 2){
+    for (let i = 1; i < points.length; i++){
 
-      context.quadraticCurveTo(points[i + 0].x, points[i + 0].y, points[i + 1].x, points[i + 1].y);
+      context.lineTo(points[i].x, points[i].y);
     }
 
-
-    // context.quadraticCurveTo(points[3].x, points[3].y, points[4].x, points[4].y);
     context.stroke();
+
+
+    // context.beginPath();
+    // context.moveTo(points[0].x, points[0].y);
+
+    // for (let i = 1; i < points.length; i += 2){
+
+    //   context.quadraticCurveTo(points[i + 0].x, points[i + 0].y, points[i + 1].x, points[i + 1].y);
+    // }
+    
+    // context.stroke();
     
     points.forEach(point => {
       point.draw(context)
