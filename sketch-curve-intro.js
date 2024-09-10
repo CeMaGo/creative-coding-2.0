@@ -48,6 +48,7 @@ const sketch = ({ canvas }) => {
     
     // context.stroke();
 
+    context.beginPath( )
     for (let i = 0; i < points.length -1; i++ ) {
       const curr = points[i + 0];
       const next = points[i + 1];
@@ -56,12 +57,18 @@ const sketch = ({ canvas }) => {
       const my = curr.y + ( next.y - curr.y) * 0.5 ;
 
       // draw midpoints
-      context.beginPath();
-      context.arc(mx, my, 5, 0, Math.PI * 2);
-      context.fillStyle = 'blue';
-      context.fill();
+      // context.beginPath();
+      // context.arc(mx, my, 5, 0, Math.PI * 2);
+      // context.fillStyle = 'blue';
+      // context.fill();
+
+      context.quadraticCurveTo(curr.x, curr.y, mx, my);
     }
     
+    context.lineWidth = 4;
+    context.strokeStyle = 'blue'
+    context.stroke();
+
     points.forEach(point => {
       point.draw(context)
     }); 
