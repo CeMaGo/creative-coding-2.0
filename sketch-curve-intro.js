@@ -47,6 +47,20 @@ const sketch = ({ canvas }) => {
     // }
     
     // context.stroke();
+
+    for (let i = 0; i < points.length -1; i++ ) {
+      const curr = points[i + 0];
+      const next = points[i + 1];
+
+      const mx = curr.x + ( next.x - curr.x) * 0.5 ;
+      const my = curr.y + ( next.y - curr.y) * 0.5 ;
+
+      // draw midpoints
+      context.beginPath();
+      context.arc(mx, my, 5, 0, Math.PI * 2);
+      context.fillStyle = 'blue';
+      context.fill();
+    }
     
     points.forEach(point => {
       point.draw(context)
